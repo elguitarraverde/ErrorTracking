@@ -1,5 +1,5 @@
 {
-    "name": "elguitarraverde/ErrorTracking",
+    "name": "elguitarraverde/errortracking",
     "authors": [
         {
             "name": "Antonio",
@@ -12,6 +12,7 @@
         }
     },
     "require": {
+        "php": ">=7.3",
         "sentry/sentry": "^4.3"
     }
 }

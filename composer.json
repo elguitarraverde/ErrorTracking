@@ -1,0 +1,17 @@
+{
+    "name": "elguitarraverde/ErrorTracking",
+    "authors": [
+        {
+            "name": "Antonio",
+            "email": "elguitarraverde@hotmail.com"
+        }
+    ],
+    "config": {
+        "platform": {
+            "php": "7.3"
+        }
+    },
+    "require": {
+        "sentry/sentry": "^4.3"
+    }
+}

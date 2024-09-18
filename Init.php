@@ -2,13 +2,14 @@
 
 namespace FacturaScripts\Plugins\ErrorTracking;
 
-use FacturaScripts\Core\Base\InitClass;
+require_once __DIR__ . '/vendor/autoload.php';
+
+use FacturaScripts\Core\Template\InitClass;
 use FacturaScripts\Core\Tools;
 use Sentry\Event;
 use Sentry\EventId;
 use Sentry\Severity;
-
-require_once __DIR__ . '/vendor/autoload.php';
+use function Sentry\captureEvent;
 
 class Init extends InitClass
 {
@@ -17,7 +18,6 @@ class Init extends InitClass
         $dns = Tools::settings('errortracking', 'dns');
 
         if (false === FS_DEBUG && false === is_null($dns)) {
-
             $pathMyFiles = FS_FOLDER . DIRECTORY_SEPARATOR . 'MyFiles';
             if (false === file_exists($pathMyFiles)) {
                 mkdir($pathMyFiles, 0755, true);
@@ -73,7 +73,7 @@ class Init extends InitClass
                     $event->setMessage($mensaje);
                     $event->setServerName(gethostname());
 
-                    $respuesta = \Sentry\captureEvent($event);
+                    $respuesta = captureEvent($event);
                     if ($respuesta instanceof EventId) {
                         array_push($archivosEnviados, $archivoParaEnviar);
                     }
@@ -85,6 +85,11 @@ class Init extends InitClass
     }
 
     public function update(): void
+    {
+        //
+    }
+
+    public function uninstall(): void
     {
         //
     }
